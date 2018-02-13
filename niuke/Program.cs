@@ -10,6 +10,9 @@ namespace niuke
     {
         static void Main(string[] args)
         {
+
+
+
             int i=int.Parse(Console.ReadLine());
             int[][] resultlist = new int[i][];
             for (int j = 0; j < i; j++)
@@ -39,14 +42,20 @@ namespace niuke
         public static int[] output(int n,int [] input)
         {
             int[] result = new int [2*n];
-            for (int i = 0; i < n-1; i++)
+            for (int i = 0; i <2*n; i++)
             {
-                for (int j = 0; j < 2; j++)
-                    result[i + j] = input[ 2*n -n*j - i - 1];
-                result[i]=
+                if (i % 2 == 0)
+                    result[i] = input[2 * n - 1 - (i / 2)];
+                else if (i % 2 != 0)
+                    result[i] = input[n - 1 - (i / 2)];
             }
-            for (int m = 0; m < 2 * n; m++)
+            for (int m = 0; m < n; m++)
+            {
+                int tempt = result[m];
                 result[m] = result[2 * n - m - 1];
+                result[2 * n - m - 1] = tempt;
+            }
+                
             return result;
         }
     }
